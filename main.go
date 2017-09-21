@@ -94,9 +94,9 @@ func serveEndpoints(appSystemCode string, appName string, port string, requestHa
 	serveMux.HandleFunc(status.BuildInfoPath, status.BuildInfoHandler)
 
 	servicesRouter := mux.NewRouter()
-	servicesRouter.HandleFunc("/topic", requestHandler.createTopic).Methods("PUT")
+	servicesRouter.HandleFunc("/topic", requestHandler.createTopic).Methods("POST")
 
-	servicesRouter.HandleFunc("/annotations", requestHandler.sendAnnotations).Methods("PUT")
+	servicesRouter.HandleFunc("/annotations", requestHandler.sendAnnotations).Methods("POST")
 
 	var monitoringRouter http.Handler = servicesRouter
 	//monitoringRouter = httphandlers.TransactionAwareRequestLoggingHandler(*log.StandardLogger(), monitoringRouter)
