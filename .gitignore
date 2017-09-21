@@ -1,0 +1,7 @@
+*.iml
+.idea
+hackathon-topic-create-and-annotate*
+vendor/*/
+.project
+.vscode
+*.env
