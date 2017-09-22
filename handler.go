@@ -76,7 +76,7 @@ func (handler *RequestHandler) createTopic(writer http.ResponseWriter, request *
 	case nil:
 		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte(
-			fmt.Sprintf(`{"message":"Topic created in Smartlogic with UUID: %v"}`, uuid),
+			fmt.Sprintf(`{"conceptUUID":"%v"}`, uuid),
 		))
 	default:
 		writer.WriteHeader(http.StatusInternalServerError)

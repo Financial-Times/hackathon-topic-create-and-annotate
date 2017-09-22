@@ -62,13 +62,37 @@ func main() {
 		EnvVar: "SL_REQUEST_URL",
 	})
 
+	notifyKey := app.String(cli.StringOpt{
+		Name:   "notifyKey",
+		Desc:   "BA",
+		EnvVar: "NOTIFY_KEY",
+	})
+
+	notifyUrl := app.String(cli.StringOpt{
+		Name:   "notifyUrl",
+		Desc:   "notifyUrl",
+		EnvVar: "NOTIFY_URL",
+	})
+
+	conceptsRWBA := app.String(cli.StringOpt{
+		Name:   "conceptsRWBA",
+		Desc:   "BA",
+		EnvVar: "CONCEPT_BA",
+	})
+
+	conceptsRWUrl := app.String(cli.StringOpt{
+		Name:   "conceptsRWUrl",
+		Desc:   "conceptsRWUrl",
+		EnvVar: "CONCEPT_RW_URL",
+	})
+
 	log.SetLevel(log.InfoLevel)
 	log.Infof("[Startup] hackathonTopicCreateAndAnnotate is starting ")
 
 	app.Action = func() {
 		log.Infof("System code: %s, App Name: %s, Port: %s", *appSystemCode, *appName, *port)
 
-		requestHandler := RequestHandler{NewSmartlogicService(*smartlogicAPIKey, *slRequestURL), NewAnnotationsService(*APIKey)}
+		requestHandler := RequestHandler{NewSmartlogicService(*smartlogicAPIKey, *slRequestURL, *notifyUrl, *notifyKey, *conceptsRWBA, *conceptsRWUrl), NewAnnotationsService(*APIKey)}
 
 		go func() {
 			serveEndpoints(*appSystemCode, *appName, *port, requestHandler)
