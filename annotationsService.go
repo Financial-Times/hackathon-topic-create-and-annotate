@@ -15,6 +15,7 @@ import (
 )
 
 type Annotations struct {
+	UUID string `json:"uuid"`
 	Annotations []Annotation `json:"annotations,omitempty"`
 }
 
@@ -58,7 +59,7 @@ func (annotationService AnnotationsService) Write(conceptId string, contentUUIDs
 
 		log.Infof("Sending to PAC annotations: %v \n ContentUUID: %v", annotations, contentUUID)
 
-		allAnnotations := Annotations{annotations}
+		allAnnotations := Annotations{contentUUID, annotations}
 
 		err = sendToPAC(annotationService.httpClient, contentUUID, allAnnotations, annotationService.apiKey)
 		if err != nil {
