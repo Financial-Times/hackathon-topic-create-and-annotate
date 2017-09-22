@@ -137,10 +137,10 @@ func (s SmartlogicService) Write(prefLabel string) (string, error) {
 	// Hack while the smartlogic notifier doesn't work - Send directly to the concepts-rw
 //	err =sendToConceptsRW(s.conceptsRWAddress, uuid, prefLabel, s.conceptsBA)
 
-	err = sendNotification(s.notifyURL, s.notifyKey)
-	if err != nil {
-		return "", err
-	}
+	//err = sendNotification(s.notifyURL, s.notifyKey)
+	//if err != nil {
+	//	return "", err
+	//}
 	return uuid, nil
 }
 
